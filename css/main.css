@@ -76,7 +76,9 @@ body {
 .group-item:hover {
     background-color: #EAEAF9;
 }
-
+.select-list:hover{
+    background-color: inherit;
+}
 .header-bottom__group-list {
     display: flex;
     align-items: center;
@@ -98,6 +100,8 @@ body {
 .header__bottom {
     margin-top: 20px;
 }
+
+
 
 /* hero ********************************************************/
 
