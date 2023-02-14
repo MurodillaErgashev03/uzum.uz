@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.header {
+    padding-top: 20px;
+}
+
+.header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__btn {
+    border: none;
+    background-color: #EAEAF9;
+    color: #6F00FD;
+    padding: 7px 20px;
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-right: 8px;
+}
+
+.header-left-box {
+    display: flex;
+    align-items: center;
+}
+
+.group-list {
+    display: flex;
+    margin-bottom: 0;
+    gap: 30px;
+}
+
+.group-item {
+    padding: 7px 20px;
+    border-radius: 5px;
+}
+
+.group-item:hover {
+    background-color: #EAEAF9;
+}
+
+.header-bottom__group-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-bottom__item-list {
+    font-size: 13px;
+    padding-bottom: 5px;
+    color: grey;
+    border-bottom: 2px solid transparent;
+}
+
+.header-bottom__item-list:hover {
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+.header__bottom {
+    margin-top: 20px;
+}
+
+/* hero ********************************************************/
+
+
+.hero {
+    margin-top: 20px;
+}
+
+.swiper-slide-img {
+    border-radius: 15px;
+    width: 100%;
+}
+
+.swiper-button-prev::after {
+    content: "";
+    color: white;
+}
+
+.swiper-button-next::after {
+    content: "";
+    color: white;
+}
+
+/* popular-products **********************************************/
+.popular-products {
+    margin-top: 15px;
+}
+
+.popular-link {
+    font-size: 28px;
+    color: black;
+}
+
+.products-top-item{
+    width: 220px;
+}
+.products-top{
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
