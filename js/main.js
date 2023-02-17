@@ -37,6 +37,21 @@ elLangSelect.addEventListener("change", () => {
 
 })
 
+// renderProducts(products, elTop);
 
 
-renderProducts(products, elTop);
+
+let products = [];
+
+
+
+const promise = fetch('https://fakestoreapi.com/products')
+
+promise
+.then((res) => res.json())
+.then((res) => {
+    console.log(res);
+    products = res;
+    renderProducts(products, elTop);
+})
+

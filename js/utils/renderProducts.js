@@ -9,10 +9,12 @@ function renderProducts(array,parent){
        let elReiting = findElement('#rating',newProduct);
        let elPrice = findElement('#price',newProduct);
        let elImg = findElement('#card-img-top',newProduct);
+       let elDiscount  = findElement('.card-discount' , newProduct);
   
-       elTitle.textContent = product.name;
+       elTitle.textContent = product.title;
+       elDiscount.textContent = Math.trunc(product.price) + 10 + "$"
        elPrice.textContent = product.price + "$";
-       elReiting.textContent = '⭐️' + product.rating;
+       elReiting.textContent = '⭐️' + '3';
   
        elTop.appendChild(newProduct)
   

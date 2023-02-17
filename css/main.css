@@ -65,7 +65,7 @@ body {
 .group-list {
     display: flex;
     margin-bottom: 0;
-    gap: 30px;
+    gap: 20px;
 }
 
 .group-item {
@@ -76,9 +76,11 @@ body {
 .group-item:hover {
     background-color: #EAEAF9;
 }
-.select-list:hover{
+
+.select-list:hover {
     background-color: inherit;
 }
+
 .header-bottom__group-list {
     display: flex;
     align-items: center;
@@ -126,6 +128,10 @@ body {
 }
 
 /* popular-products **********************************************/
+.card{
+    position: relative;
+}
+
 .popular-products {
     margin-top: 15px;
 }
@@ -135,13 +141,43 @@ body {
     color: black;
 }
 
-.products-top-item{
+.products-top-item {
     width: 220px;
 }
-.products-top{
+
+.products-top {
     margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
+}
+.card-body{
+    position: relative;
+}
+
+.card-title {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.card-reating{
+    margin-bottom: 8px;
+}
+.card-btn{
+    position: absolute;
+    border-radius: 50%;
+    width: 37px;
+    height: 35px;
+    border: 1px solid gray;
+    background-color: inherit;
+    margin-left: 150px;
+    margin-top: -30px;
+}
+.card-heart{
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    margin-left: 180px;
+    margin-top: 10px;
 }
