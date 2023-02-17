@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
@@ -17,6 +18,7 @@
 <body>
 
 
+
     <div class="container">
 
         <header class="header">
@@ -24,22 +26,32 @@
             <div class="header__top">
 
                 <div class="header-left-box">
-                        <img src="./img/uzum-logo.svg" alt="logo-svg">
+                    <img src="./img/uzum-logo.svg" alt="logo-svg">
                     <button class="header__btn">
+                        <div class="catalog-icon" data-v-58853e36="" style="--out:#eaeaf9;">
+                            <div class="rect">
+                                <div class="inner"></div>
+                            </div>
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
                         Katolog
                     </button>
-                    <input style="width: 470px;" class="form-control" type="search" placeholder="search">
+                    <input style="width: 400px;" class="form-control" type="search" placeholder="Mahsulotlar va turkumlarni izlash">
                 </div>
 
                 <div class="header-right-box">
                     <ul class="group-list">
-                        <li class="group-item">
+                        <li  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="group-item">
+                            <img src="/img/access.svg" alt="">
                             Kirish
                         </li>
                         <li class="group-item">
+                            <img src="./img/sorted.svg" alt="">
                             Saralanganlar
                         </li>
                         <li class="group-item">
+                            <img src="./img/basket.svg" alt="">
                             Savat
                         </li>
                         <li class="group-item select-list">
@@ -100,6 +112,36 @@
 
         </header>
 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="modal_title">
+            Telefon raqamini kiriting
+          </h3>
+          <p>
+            Tasdiqlash kodini SMS orqali yuboramiz
+          </p>
+          <input class="modal-input" type="number" placeholder="+998">
+          
+          <button class="modal-btn">Kodni olish</button>
+
+          <p class="modal-text">
+            Parol bilan kirish
+          </p>
+          <p class="modal-bottom-text">
+            Avtotizatsiyadan o'tish orqali siz shaxsiy ma'lumotlarni qayta ishlash siyosatiga rozilik bildirasiz
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> 
         <main class="main">
 
             <section class="hero">
@@ -126,7 +168,6 @@
 
 
 
-
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
 
@@ -134,12 +175,21 @@
                 </div>
             </section>
 
+
+
+
+              
             <section class="popular-products">
-                <a class="popular-link" href="#">
-                    Katta sotuvlar
-                </a>
+                <div class="popular-top-box">
+                    <a class="popular-link" href="#">
+                        Katta sotuvlar
+                    </a>
+                    <a href="#">
+                        <img class="popular-link-img" src="./img/korsatkich.svg" alt="">
+                    </a>
+                </div>
                 <ul id="products-top-id" class="products-top">
-                  
+
                 </ul>
             </section>
         </main>
@@ -148,14 +198,11 @@
     <template id="product-template">
         <li class="products-top-item">
             <div class="card">
-              <img class="card-heart" src="./img/yurak.svg" alt="img">
-                <img
-                    class="card-img"
-                    src="https://picsum.photos/200/300"
-                    alt="Card image cap"
-                />
+                <button class="img-btn"> <img class="card-heart" src="./img/yurak.svg" alt="img">
+                <img class="card-heart1" src="./img/heart.svg" alt=""></button>
+                <img class="card-img" alt="Card image cap" />
                 <div class="card-body">
-                    <h4 class="card-title"  id="title">Lorem ipsum dolor sit amet.</h4>
+                    <h4 class="card-title" id="title">Lorem ipsum dolor sit amet.</h4>
                     <p class="card-reating" id="rating"></p>
                     <del class="card-discount">123</del>
                     <p id="price">123123</p>
@@ -166,14 +213,19 @@
         </li>
     </template>
 
-  
+ 
 
-     <script type="module" src="./js/swiper.js"></script>
-     <!-- <script src="./js/product.js"></script> -->
-     <script src="./js/utils/findElement.js"></script>
-     <script src="./js/utils/renderProducts.js"></script>
+	
+    <script type="module" src="./js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="./js/product.js"></script> -->
+    <script src="./js/utils/findElement.js"></script>
+    <script src="./js/utils/renderProducts.js"></script>
     <script src="./js/main.js"></script>
 
 </body>
 
 </html>
+
+
+
