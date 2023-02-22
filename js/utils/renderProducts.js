@@ -1,30 +1,48 @@
-function renderProducts(array,parent){
-     
-    parent.textContent = "";
-   
-  array.slice(0,20).forEach((product) => {
-      let newProduct = elTopTemplate.content.cloneNode(true)
-      
-       let elTitle = findElement('#title',newProduct);
-       let elReiting = findElement('#rating',newProduct);
-       let elPrice = findElement('#price',newProduct);
-       let elImg = findElement('.card-img',newProduct);
-       let elDiscount  = findElement('.card-discount' , newProduct);
-  
-       elTitle.textContent = product.title;
-       elDiscount.textContent = Math.trunc(product.price) + 10 + "$"
-       elPrice.textContent = product.price + "$";
-       elReiting.textContent = '⭐️' + '3';
-       elImg.src =  product.image;
+function renderProducts(array, parent, template) {
 
-    
-       
-       elTop.appendChild(newProduct)
-       
-      })
-    }
-    
+  parent.textContent = "";
+
+  array.forEach((product) => {
+    const newProduct = template.content.cloneNode(true);
+
+
+    let svg = findElement('#like ', newProduct);
+    let path = findElement('#path', newProduct);
   
+    let elTitle = findElement('#title', newProduct);
+    let elReiting = findElement('#rating', newProduct);
+    let elPrice = findElement('#price', newProduct);
+    let elImg = findElement('.card-img', newProduct);
+    let elDiscount = findElement('.card-discount', newProduct);
+
+
+
+
+
+    svg.dataset.id = product.id
+
+
+    if (product.favorite) {
+      svg.style.fill = 'red'
+    } else {
+      svg.style.fill = 'white'
+    }
+
+    elTitle.textContent = product.name;
+    elDiscount.textContent = Math.trunc(product.price) + 10 + "$"
+
+    elPrice.textContent = product.price + "$";
+    elReiting.textContent = '⭐️' + product.rating;
+    elImg.src = product.images;
+
+
+
+    parent.appendChild(newProduct)
+
+  })
+}
+
+
 
 
 
