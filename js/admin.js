@@ -1,6 +1,49 @@
 let elTop = findElement('#products-top-id');
 let elTopTemplate = findElement('#product-template');
 let elLangSelect = findElement("#language-select");
+let elForm = findElement("#add-form");
+let elLoaderPost =  findElement('#loader-post');
+
+
+elForm.addEventListener("submit", (evt)=>{
+    evt.preventDefault();
+
+   let submitBtn = findElement('#submit-btn');
+   submitBtn.disabled = "true"
+
+  const elTitle = evt.target.title.value;
+  const elImg = evt.target.image.value;
+  const elPrice = evt.target.price.value;
+  const elRating = evt.target.rating.value;
+  const elCategory = evt.target.category.value
+
+  let newProduct ={
+        createdAt: new Date(),
+        name: elTitle,
+        images: elImg ,
+        category: elCategory,
+        price: elPrice,
+        rating: elRating,
+  }
+  
+  elLoaderPost.style.display = "inline-block";
+   
+
+   
+  fetch(BASE_URL +  '/products',{
+    method: "post",
+    body: JSON.stringify(newProduct),
+    headers:{
+        'Content-Type': 'application/json',
+    }   
+  }).then((res) => res.json())
+   .then((data) => {
+    console.log(data);
+    elLoaderPost.style.display = "none";
+    submitBtn.disabled = ""
+    window.location.reload();
+   })
+})
 
 let lang = localStorage.getItem("lang");
 elLangSelect.value = lang;
@@ -63,7 +106,7 @@ const getData = async () => {
         
         products = res2;
        
-        renderProducts(res2, elTop, elTopTemplate);
+        renderProducts(res2, elTop, elTopTemplate, true);
       
     }
     catch(err){
@@ -81,30 +124,24 @@ getData();
 elTop.addEventListener('click', (evt) => {
    const target = evt.target;
    
-   if (target.id.includes('like')) {
-       const id = target.dataset.id;
-      products.forEach((product) => {
-        if (product.id == id) {
-            product.favorite = !product.favorite;
-          
+   
+   if (target.className.includes('btn-danger')) {
 
-            fetch('https://63f5ba8059c944921f6552b8.mockapi.io/products/' + id,{
-                method: "PUT",
-                body: JSON.stringify({
-                    ...product,
-                    favorite: product.favorite,
-                }),
-                headers:{
-                    'Content-Type': 'application/json',
+
+       const id = Number(target.dataset.id);
+       
+       fetch('https://63f5ba8059c944921f6552b8.mockapi.io/products/' + id,{
+                    method: "delete",
                 }
-            }
-            )
-            .then((res) => res.json())
-            .then((res) =>{
-                
-            })
-        }
-      });
+                )
+                .then((res) => res.json())
+                .then((res) =>{
+                   window.location.reload();
+                })
+     
+    
+
+
       renderProducts(products, elTop, elTopTemplate)
    }
 })

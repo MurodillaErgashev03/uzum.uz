@@ -1,4 +1,4 @@
-function renderProducts(array, parent, template) {
+function renderProducts(array, parent, template, isAdmin = false) {
 
   parent.textContent = "";
 
@@ -8,7 +8,7 @@ function renderProducts(array, parent, template) {
 
     let svg = findElement('#like ', newProduct);
     let path = findElement('#path', newProduct);
-  
+
     let elTitle = findElement('#title', newProduct);
     let elReiting = findElement('#rating', newProduct);
     let elPrice = findElement('#price', newProduct);
@@ -27,6 +27,18 @@ function renderProducts(array, parent, template) {
     } else {
       svg.style.fill = 'white'
     }
+
+
+
+
+    //admin
+
+    if(isAdmin){
+      const deleteBtn = findElement('.btn-danger', newProduct);
+      deleteBtn.dataset.id = product.id
+
+    }
+
 
     elTitle.textContent = product.name;
     elDiscount.textContent = Math.trunc(product.price) + 10 + "$"
