@@ -7,3 +7,5 @@ function changeLoading(isLoading) {
 		loader.style.display = 'none';
 	}
 }
+
+export default changeLoading;

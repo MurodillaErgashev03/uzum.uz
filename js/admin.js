@@ -1,8 +1,18 @@
+import  renderProducts from './utils/renderProducts.js';
+
+const token = localStorage.getItem('token');
+
+if (!token) {
+    window.location.href = '../index.html';
+}
+
+
 let elTop = findElement('#products-top-id');
 let elTopTemplate = findElement('#product-template');
 let elLangSelect = findElement("#language-select");
 let elForm = findElement("#add-form");
 let elLoaderPost =  findElement('#loader-post');
+
 
 
 elForm.addEventListener("submit", (evt)=>{
@@ -34,6 +44,7 @@ elForm.addEventListener("submit", (evt)=>{
     method: "post",
     body: JSON.stringify(newProduct),
     headers:{
+        "Authorization" : "Bearer " + token,
         'Content-Type': 'application/json',
     }   
   }).then((res) => res.json())
@@ -105,12 +116,12 @@ const getData = async () => {
         const res2 = await res.json();
         
         products = res2;
-       
         renderProducts(res2, elTop, elTopTemplate, true);
       
     }
     catch(err){
         alert(err)
+        console.log(err)
     }
     finally {
 		changeLoading(false);
@@ -132,7 +143,12 @@ elTop.addEventListener('click', (evt) => {
        
        fetch('https://63f5ba8059c944921f6552b8.mockapi.io/products/' + id,{
                     method: "delete",
+                    headers:{
+                        "Authorization" : "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    }   
                 }
+                
                 )
                 .then((res) => res.json())
                 .then((res) =>{

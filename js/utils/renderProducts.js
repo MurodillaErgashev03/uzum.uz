@@ -14,7 +14,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
     let elPrice = findElement('#price', newProduct);
     let elImg = findElement('.card-img', newProduct);
     let elDiscount = findElement('.card-discount', newProduct);
-
+    let elCatagory = findElement('.catagory' , newProduct);
 
 
 
@@ -46,7 +46,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
     elPrice.textContent = product.price + "$";
     elReiting.textContent = '⭐️' + product.rating;
     elImg.src = product.images;
-
+    elCatagory.textContent = product.category;
 
 
     parent.appendChild(newProduct)
@@ -54,6 +54,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
   })
 }
 
+export default renderProducts;
 
 
 

@@ -1,3 +1,6 @@
+import  renderProducts from './utils/renderProducts.js';
+import changeLoading from './changeLoader.js';
+
 const template = findElement('#product-template');
 const elParent = findElement('.products-favorites');
 
@@ -53,12 +56,13 @@ elParent.addEventListener('click', (evt) => {
                 )
                     .then((res) => res.json())
                     .then((res) => {
+                        console.log(res)
                         fetch('https://63f5ba8059c944921f6552b8.mockapi.io/products/')
                             .then((res) => res.json())
                             .then((data) => {
                                 let result = data.filter((product) => {
  
-                                    console.log(data)
+                                  
                                     if (product.favorite) {
                                         return product;
                                     }
@@ -73,6 +77,6 @@ elParent.addEventListener('click', (evt) => {
                     })
             }
         });
-        // renderProducts(favouriteProduct, elParent, template)
+       
     }
 })

@@ -1,0 +1,18 @@
+.hero {
+    margin-top: 20px;
+}
+
+.swiper-slide-img {
+    border-radius: 15px;
+    width: 100%;
+}
+
+.swiper-button-prev::after {
+    content: "";
+    color: white;
+}
+
+.swiper-button-next::after {
+    content: "";
+    color: white;
+}

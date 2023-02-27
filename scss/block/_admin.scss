@@ -1,0 +1,70 @@
+.header-link {
+    padding: 5px 10px;
+    border: 1px solid teal;
+    border-radius: 8px;
+    margin-left: 50px;
+}
+
+.header-link:hover {
+    background-color: #EAEAF9;
+}
+
+.top-link-block {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.top-link {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: #7000FF;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.top-link::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    display: flex;
+    background-image: url(../img/top.img.svg);
+    background-size: contain;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.btn-info {
+    color: white;
+}
+
+.input {
+    margin-bottom: 15px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.select {
+    margin-bottom: 20px;
+}
+
+.btn-post {
+    display: flex;
+    align-items: center;
+
+}
+
+.post-span {
+    width: 50%;
+    text-align: right;
+    margin-left: -10px;
+    margin-right: 10px;
+}

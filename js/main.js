@@ -1,6 +1,41 @@
+import  renderProducts from './utils/renderProducts.js';
+import changeLoading from './changeLoader.js';
+
 let elTop = findElement('#products-top-id');
 let elTopTemplate = findElement('#product-template');
 let elLangSelect = findElement("#language-select");
+let ulCategories = findElement('#categories');
+let loginBtn = findElement('#login-btn');
+let adminLink = findElement('#admin-link');
+
+
+let token = localStorage.getItem('token');
+
+
+if (token) {
+    loginBtn.textContent = "Chiqish";
+    adminLink.style.display = "block";
+}
+else{
+    loginBtn.textContent = "Kirish";
+    adminLink.style.display = "none";
+}
+
+loginBtn.addEventListener('click', ()=> {
+
+   let token = localStorage.getItem('token'); 
+    if(token){
+        adminLink.style.display = "none";
+        localStorage.removeItem('token');
+        loginBtn.textContent = "Kirish"
+    }
+    else{
+    window.location.href = '../pages/login.html'
+    }
+})
+
+
+
 
 let lang = localStorage.getItem("lang");
 elLangSelect.value = lang;
@@ -42,14 +77,47 @@ let BASE_URL = 'https://63f5ba8059c944921f6552b8.mockapi.io/'
 
 let products = [];
 let favoriteProducts = [];
+let categories = [];
 
-function changeLoading(isLoading) {
-	if (isLoading) {
-		loader.style.display = 'block';
-	} else {
-		loader.style.display = 'none';
-	}
+
+fetch( BASE_URL + 'categories').then((res) => res.json()).then((res) => {
+   res.forEach((catagory) => {
+       categories = res;
+       renderCategories(categories, ulCategories)
+   })
+}) 
+
+
+
+const renderCategories = (array , parent ) =>{
+        array.splice(0,10).forEach((category)  => {
+         
+            const newLi = document.createElement('li')
+            newLi.className = 'header-bottom__item-list';
+
+            newLi.textContent = category.name;
+            parent.appendChild(newLi);
+        })
 }
+
+
+
+ulCategories.addEventListener('click', (evt)=>{
+    const target = evt.target;
+  if(target.className.includes('header-bottom__item-list')){
+    
+    const catagory = target.textContent;
+    const result = [];
+    
+    products.forEach((product)=>{
+        if (product.category === catagory) {
+        
+           result.push(product)
+        }
+    })
+    renderProducts(result, elTop, elTopTemplate);
+  }
+})
 
 const getData = async () => {
     try {
@@ -95,6 +163,7 @@ elTop.addEventListener('click', (evt) => {
                     favorite: product.favorite,
                 }),
                 headers:{
+                    "Authorization" : "Bearer " + token,
                     'Content-Type': 'application/json',
                 }
             }
