@@ -15,6 +15,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
     let elImg = findElement('.card-img', newProduct);
     let elDiscount = findElement('.card-discount', newProduct);
     let elCatagory = findElement('.catagory' , newProduct);
+    let elBody = findElement('#body', newProduct)
 
 
 
@@ -47,6 +48,16 @@ function renderProducts(array, parent, template, isAdmin = false) {
     elReiting.textContent = '⭐️' + product.rating;
     elImg.src = product.images;
     elCatagory.textContent = product.category;
+
+
+    if(elBody){
+    elBody.textContent = product.body;
+    }
+
+    elImg.addEventListener('click', ()=> {
+      localStorage.setItem('id', product.id)
+      window.location.href = '../../pages/single-product.html'
+    })
 
 
     parent.appendChild(newProduct)
