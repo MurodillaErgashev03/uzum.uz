@@ -276,6 +276,10 @@ body {
   display: none;
 }
 
+.pagination {
+  margin-top: 20px;
+}
+
 .gradient-custom {
   /* fallback for old browsers */
   background: #6a11cb;

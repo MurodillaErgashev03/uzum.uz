@@ -3,6 +3,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
   parent.textContent = "";
 
   array.forEach((product) => {
+
     const newProduct = template.content.cloneNode(true);
 
 
@@ -15,11 +16,8 @@ function renderProducts(array, parent, template, isAdmin = false) {
     let elImg = findElement('.card-img', newProduct);
     let elDiscount = findElement('.card-discount', newProduct);
     let elCatagory = findElement('.catagory' , newProduct);
-    let elBody = findElement('#body', newProduct)
-
-
-
-
+    let elBody = findElement('#body', newProduct);
+    
     svg.dataset.id = product.id
 
 

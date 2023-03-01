@@ -1,6 +1,9 @@
 import  renderProducts from './utils/renderProducts.js';
 import changeLoading from './changeLoader.js';
 
+
+let PageSize = 20;
+
 let elTop = findElement('#products-top-id');
 let elTopTemplate = findElement('#product-template');
 let elLangSelect = findElement("#language-select");
@@ -8,6 +11,11 @@ let ulCategories = findElement('#categories');
 let loginBtn = findElement('#login-btn');
 let adminLink = findElement('#admin-link');
 
+let elPaginationList = findElement('.pagination');
+
+
+let allProductCount = 0;
+let activePage = 1;
 
 let token = localStorage.getItem('token');
 
@@ -128,10 +136,37 @@ const getData = async () => {
             throw new Error("Qaytadan urinib ko'ring")
         }
         const res2 = await res.json();
-        
+        allProductCount = res2.length
         products = res2;
+
+        elPaginationList.innerHTML = `
+        <li id="prev" class="opacity-50 page-item page-link">
+        &laquo;
+        </li>
+        `
+
+        for (let i = 0; i < Math.ceil(allProductCount / PageSize); i++) {
+            
+            let newLi = document.createElement('li');
+
+            newLi.className = 'page-item  page-link page-number';
+            newLi.textContent= i + 1;
+
+            if (activePage == i + 1) {
+                newLi.style.color = 'white';
+                newLi.style.background = 'blue'
+            }
+            
+            elPaginationList.appendChild(newLi)
+        }
+        elPaginationList.innerHTML += `
+        <li id="next" class="page-item  page-link">             
+         &raquo;
+        </li>
+        `
+        
        
-        renderProducts(res2, elTop, elTopTemplate);
+        renderProducts(res2.slice(0,20), elTop, elTopTemplate);
       
     }
     catch(err){
@@ -142,6 +177,67 @@ const getData = async () => {
 	}
 
 }
+
+elPaginationList.addEventListener('click', (evt) => {
+    const prevBtn = document.querySelector('#prev');
+    const nextBtn = document.querySelector('#next');
+   if (evt.target.className.includes('page-number')) {
+    const page = evt.target.textContent;
+    activePage= page;
+
+   
+
+    renderProducts(products.slice(PageSize * (page-1), PageSize * page), elTop, elTopTemplate);
+    
+   }
+   if (evt.target.id === 'prev') {
+      
+        if (activePage != 1) {
+            activePage--
+            renderProducts(products.slice(PageSize * (activePage-1), PageSize * activePage), elTop, elTopTemplate);
+           
+        }
+       
+   }
+   if (evt.target.id === 'next') {
+    activePage++;
+    renderProducts(products.slice(PageSize * (activePage-1), PageSize * activePage), elTop, elTopTemplate);
+    
+}
+const lastPage = Math.ceil(products.length / PageSize)
+
+if (activePage == 1) {
+    prevBtn.className = 'opacity-50 page-item page-link'
+}
+else{
+    prevBtn.className = 'page-item page-link'
+}
+elPaginationList.innerHTML = `
+<li id="prev" class="${activePage == 1 ? 'opacity-50' : ''} page-item page-link">
+&laquo;
+</li>
+`
+
+for (let i = 0; i < Math.ceil(allProductCount / PageSize); i++) {
+    
+    let newLi = document.createElement('li');
+
+    newLi.className = 'page-item  page-link page-number';
+    newLi.textContent= i + 1;
+
+    if (activePage == i + 1) {
+        newLi.style.color = 'white';
+        newLi.style.background = 'blue'
+    }
+    
+    elPaginationList.appendChild(newLi)
+}
+elPaginationList.innerHTML += `
+<li id="next" class="${activePage == lastPage ? 'opacity-50' : ''} page-item  page-link">             
+ &raquo;
+</li>
+`
+})
 
 getData();
 
