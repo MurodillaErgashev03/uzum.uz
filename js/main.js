@@ -13,6 +13,29 @@ let adminLink = findElement('#admin-link');
 
 let elPaginationList = findElement('.pagination');
 
+let elSearch = findElement('#search');
+
+let products = [];
+let favoriteProducts = [];
+let categories = [];
+
+///search
+
+elSearch.addEventListener('input', ()=>{
+    let value = elSearch.value;
+
+
+    let  searchResultArray =  products.filter((product)=>{
+    
+
+        if (product.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {
+            return product;
+        }
+       
+    });
+    renderProducts(searchResultArray, elTop, elTopTemplate);
+})
+
 
 let allProductCount = 0;
 let activePage = 1;
@@ -83,9 +106,6 @@ elLangSelect.addEventListener("change", () => {
 let BASE_URL = 'https://63f5ba8059c944921f6552b8.mockapi.io/'
 
 
-let products = [];
-let favoriteProducts = [];
-let categories = [];
 
 
 fetch( BASE_URL + 'categories').then((res) => res.json()).then((res) => {
