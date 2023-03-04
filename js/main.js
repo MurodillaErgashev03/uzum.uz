@@ -327,7 +327,7 @@ elTop.addEventListener('click', (evt) => {
              )
              .then((res) => res.json())
              .then((res) =>{
-                 alert("qowildi")
+                 alert("Maxsulot savatga qo'shildi")
              })
          }
        });
