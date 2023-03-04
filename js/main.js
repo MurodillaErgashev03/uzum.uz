@@ -36,6 +36,7 @@ elSearch.addEventListener('input', ()=>{
     renderProducts(searchResultArray, elTop, elTopTemplate);
 })
 
+//login_token
 
 let allProductCount = 0;
 let activePage = 1;
@@ -66,7 +67,7 @@ loginBtn.addEventListener('click', ()=> {
 })
 
 
-
+//til
 
 let lang = localStorage.getItem("lang");
 elLangSelect.value = lang;
@@ -106,7 +107,7 @@ elLangSelect.addEventListener("change", () => {
 let BASE_URL = 'https://63f5ba8059c944921f6552b8.mockapi.io/'
 
 
-
+//catagoriya
 
 fetch( BASE_URL + 'categories').then((res) => res.json()).then((res) => {
    res.forEach((catagory) => {
@@ -146,6 +147,10 @@ ulCategories.addEventListener('click', (evt)=>{
     renderProducts(result, elTop, elTopTemplate);
   }
 })
+
+
+
+//pagination
 
 const getData = async () => {
     try {
@@ -262,6 +267,8 @@ elPaginationList.innerHTML += `
 getData();
 
 
+//saralanganlar
+
 elTop.addEventListener('click', (evt) => {
    const target = evt.target;
    
@@ -293,3 +300,37 @@ elTop.addEventListener('click', (evt) => {
       renderProducts(products, elTop, elTopTemplate)
    }
 })
+/// basket 
+
+elTop.addEventListener('click', (evt) => {
+    const target = evt.target;
+    
+    if (target.className.includes('savat')) {
+        const id = target.dataset.id;
+        console.log(id)
+       products.forEach((product) => {
+         if (product.id == id) {
+             product.basket = !product.basket;
+           
+ 
+             fetch('https://63f5ba8059c944921f6552b8.mockapi.io/products/' + id,{
+                 method: "PUT",
+                 body: JSON.stringify({
+                     ...product,
+                     basket: product.basket,
+                 }),
+                 headers:{
+                     "Authorization" : "Bearer " + token,
+                     'Content-Type': 'application/json',
+                 }
+             }
+             )
+             .then((res) => res.json())
+             .then((res) =>{
+                 alert("qowildi")
+             })
+         }
+       });
+       renderProducts(products, elTop, elTopTemplate)
+    }
+ })

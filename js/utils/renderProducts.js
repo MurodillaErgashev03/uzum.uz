@@ -17,6 +17,11 @@ function renderProducts(array, parent, template, isAdmin = false) {
     let elDiscount = findElement('.card-discount', newProduct);
     let elCatagory = findElement('.catagory' , newProduct);
     let elBody = findElement('#body', newProduct);
+
+    let elBasket = findElement('.savat', newProduct);
+    elBasket.dataset.id = product.id
+
+ 
     
     svg.dataset.id = product.id
 
@@ -39,6 +44,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
     }
 
 
+
     elTitle.textContent = product.name;
     elDiscount.textContent = Math.trunc(product.price) + 10 + "$"
 
@@ -54,14 +60,18 @@ function renderProducts(array, parent, template, isAdmin = false) {
 
     elImg.addEventListener('click', ()=> {
       localStorage.setItem('id', product.id)
-      window.location.href = '../../pages/single-product.html'
+      window.location.href = '../../pages/single-product.html';
     })
+    
+  
 
 
     parent.appendChild(newProduct)
 
   })
 }
+
+  
 
 export default renderProducts;
 
